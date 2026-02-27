@@ -151,6 +151,16 @@ Label the axes with units where appropriate.
 
 Add a title describing the relationship (e.g. as SLA increases, total mass ______). 
 
+```{r}
+ggplot(data = drought_exp_clean, 
+       aes(x = sla, 
+           y = total_g)) + 
+  geom_point(color = "#50a492") + 
+  labs( x = "Specific Leaf Area (cm\U00B2/g)", 
+        y = "Total mass (g)", 
+        title = "As SLA increases total mass also increases")
+
+```
 
 
 
@@ -164,6 +174,21 @@ Label the axes with units where appropriate.
 Add a title describing the differences in (mean or median) plant mass between water treatments.
 
 
+```{r}
+ggplot(data = drought_exp_clean, 
+       aes(x = water_treatment, 
+           y = total_g, 
+           color = water_treatment)) + 
+  geom_jitter(height = 0, 
+              width = 0.3) + 
+  scale_color_manual(values = c("Drought stressed" = ds_col, 
+                                "Well watered" = ww_col)) + 
+labs( x = "Water treatment", 
+        y = "Total mass (g)", 
+        title = "Mean weight of well watered treatment group greater than drought stressed") + 
+  theme(legend.position = "none")
+
+```
 
 
 
@@ -180,6 +205,27 @@ Add a title describing the differences in (mean or median) plant mass between sp
 Bonus: order the x-axis by decreasing mean plant mass _and_ wrap the long species names using the `label_wrap()` function from the `scales` package.
 
 
+```{r}
+ggplot(data = drought_exp_clean, 
+       aes(x = species_name, 
+           y = total_g, 
+           color = species_name)) + 
+  geom_jitter(height = 0, 
+              width = 0.2) + 
+  scale_color_manual(values = c(
+    "Lotus scoparius" = lotsco_col, 
+     "Penstemon centranthifolius" = pencen_col, 
+     "Salvia leucophylla" = salleu_col, 
+      "Encelia californica" = enccal_col, 
+       "Stipa pulchra" = stipul_col, 
+      "Eschscholzia californica" = esccal_col, 
+       "Grindelia camporum" = gricam_col)) + 
+  scale_x_discrete(labels = label_wrap(10)) + 
+  labs(x = "Species name", 
+       y = "Total mass (g)", 
+       title = "Plant mass differs across species") + 
+  theme(legend.position = "none")
+```
 
 
 
