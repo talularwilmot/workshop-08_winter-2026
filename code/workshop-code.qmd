@@ -1,8 +1,8 @@
 ---
 title: "Workshop 8 TEMPLATE"
-subtitle: "insert your section time here"
-author: "insert your name here"
-date: "insert your name here"
+subtitle: "9AM"
+author: "Talula Wilmot"
+date: "2026-02-27"
 format:
   html:
     toc: true # use this to display a table of contents
@@ -45,7 +45,11 @@ library(MuMIn) # model selection
 
 # read in your data here
 
-
+drought_x <- read_xlsx(
+  path = here(
+    "data", 
+    "Valliere_etal_EcoApps_Data.xlsx"), 
+  sheet = "First Harvest")
 
 ```
 
